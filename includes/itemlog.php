@@ -1,0 +1,53 @@
+
+<?php
+
+include_once 'db.php';
+
+if(isset($_POST['additem']))
+{
+    $bloodgroup = $MySQLi_CON->real_escape_string(trim($_POST['itemtitle']));
+    $camp = $MySQLi_CON->real_escape_string(trim($_POST['itemcat']));
+    $pints = $MySQLi_CON->real_escape_string(trim($_POST['itemunit']));
+    $ddate = $MySQLi_CON->real_escape_string(trim($_POST['partnum']));
+    $ddate = $MySQLi_CON->real_escape_string(trim($_POST['serialnum']));
+    $ddate = $MySQLi_CON->real_escape_string(trim($_POST['aircrafttype']));
+    $ddate = $MySQLi_CON->real_escape_string(trim($_POST['aircraftreg']));
+    $ddate = $MySQLi_CON->real_escape_string(trim($_POST['position']));
+    $ddate = $MySQLi_CON->real_escape_string(trim($_POST['hoursrun']));
+    $ddate = $MySQLi_CON->real_escape_string(trim($_POST['quantity']));
+    $ddate = $MySQLi_CON->real_escape_string(trim($_POST['defect']));
+    $ddate = $MySQLi_CON->real_escape_string(trim($_POST['modstatus']));
+    $ddate = $MySQLi_CON->real_escape_string(trim($_POST['partawaited']));
+    $ddate = $MySQLi_CON->real_escape_string(trim($_POST['quarantine']));
+    $ddate = $MySQLi_CON->real_escape_string(trim($_POST['repairstatus']));
+    $ddate = $MySQLi_CON->real_escape_string(trim($_POST['ddate']));
+   
+    $query = "INSERT INTO donation (bloodgroup,camp,pints,ddate) VALUES('$bloodgroup','$camp','$pints','$ddate')";
+
+    if($MySQLi_CON->query($query))
+    {
+        $msg1 = "<div class='alert bg-succeed'>
+					<button class='close' data-dismiss='alert'>&times;</button>
+					Successfully updated blood details. Please wait you will be redirected to your account shortly
+			  	</div>";
+       header("refresh:3;record");
+
+    }
+    else
+    {
+        $msg1 = "<div class='alert bg-info'>
+						<button class='close' data-dismiss='alert'>&times;</button> Error while updating the camp details
+					</div>";
+    }
+
+
+
+
+
+}
+
+$MySQLi_CON->close();
+
+?>
+
+
